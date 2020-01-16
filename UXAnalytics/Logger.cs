@@ -8,8 +8,20 @@ namespace UXAnalytics
 {
     public interface ILogger<T> where T : BaseViewModel
     {
+        /// <summary>
+        /// Log event with page name
+        /// </summary>
+        /// <param name="properties"></param>
         void LogEvent(Dictionary<string, string> properties = null);
+
+        /// <summary>
+        /// Start logging time on page
+        /// </summary>
         void StartLogging();
+
+        /// <summary>
+        /// End logging time on page and log to AppCenter Analytics
+        /// </summary>
         void EndLogging();
     }
 
@@ -23,25 +35,19 @@ namespace UXAnalytics
 
             if (properties != null)
             {
-                Analytics.TrackEvent(name);
+                Analytics.TrackEvent(name, properties);
                 return;
             }
 
             Analytics.TrackEvent(name);
         }
 
-        /// <summary>
-        /// Start logging time on page
-        /// </summary>
         public void StartLogging()
         {
             stopWatch = new Stopwatch();
             stopWatch.Start();
         }
 
-        /// <summary>
-        /// End logging time on page and log to AppCenter Analytics
-        /// </summary>
         public void EndLogging()
         {
             stopWatch.Stop();
