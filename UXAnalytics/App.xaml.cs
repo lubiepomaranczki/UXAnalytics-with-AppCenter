@@ -20,7 +20,7 @@ namespace UXAnalytics
 
         private void RegisterPagesForAnalytic()
         {
-            Logger.RegisterPage(typeof(MainPage), "Main page");
+            Logger.RegisterPage(typeof(MainPageViewModel), "Main page");
         }
 
         protected override void OnStart()
